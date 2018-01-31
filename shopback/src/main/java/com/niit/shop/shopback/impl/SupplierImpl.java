@@ -22,7 +22,7 @@ public class SupplierImpl implements SupplierDao{
 		public boolean addSupplier(Supplier supplier) {
 			Session session = sessionFactory.openSession();
 			session.beginTransaction();
-			session.persist(supplier);
+			session.saveOrUpdate(supplier);
 			session.getTransaction().commit();
 			session.close();
 			return true;

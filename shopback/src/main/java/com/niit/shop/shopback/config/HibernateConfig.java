@@ -14,6 +14,8 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.niit.shop.shopback.impl.CategoryImpl;
+import com.niit.shop.shopback.impl.UserImpl;
 import com.niit.shop.shopback.model.Supplier;
 
 
@@ -54,4 +56,18 @@ public class HibernateConfig {
     public HibernateTransactionManager txManager(SessionFactory sessionFactory) {
         return new HibernateTransactionManager(sessionFactory);
     }
+	
+	@Autowired
+	@Bean(name="categorydao")
+	public CategoryImpl getCategoryData(SessionFactory sessionFactory)
+	{
+		return new CategoryImpl(sessionFactory);
+	}
+	
+	@Autowired
+	@Bean(name="userdao")
+	public UserImpl getUserData(SessionFactory sessionFactory)
+	{
+		return new UserImpl(sessionFactory);
+	}
 }

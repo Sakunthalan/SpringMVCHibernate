@@ -24,7 +24,7 @@
             <br>
             <div class="wrapper">
             <span class="group-btn">     
-                <a href="adminPage" class="btn btn-primary btn-md">login <i class="fa fa-sign-in"></i></a>
+                <a href="adminPage" class="btn btn-primary btn-md">LOGIN <i class="fa fa-sign-in"></i></a>
             </span>
             </div>
             </div>

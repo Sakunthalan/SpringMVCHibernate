@@ -1,43 +1,24 @@
 package com.niit.shop.shopback.model;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity(name="Suppliers")
+@Entity(name="SupplierTable")
 public class Supplier {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int id;
-	private String name;
-	private String address;
-	private String contactNum;
-	public int getId() {
-		return id;
+	private String supplierId;
+	private String supplierName;
+	public String getSupplierId() {
+		return supplierId;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setSupplierId(String supplierId) {
+		this.supplierId = supplierId;
+	}
+	public String getSupplierName() {
+		return supplierName;
+	}
+	public void setSupplierName(String supplierName) {
+		this.supplierName = supplierName;
 	}	
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getAddress() {
-		return address;
-	}
-	public void setAddress(String address) {
-		this.address = address;
-	}
-	public String getContactNum() {
-		return contactNum;
-	}
-	public void setContactNum(String contactNum) {
-		this.contactNum = contactNum;
-	}
-	
-	
 }

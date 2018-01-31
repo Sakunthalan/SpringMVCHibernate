@@ -27,15 +27,11 @@ public class SupplierTest {
 	public void addSupplierTest() {
 		// add
 		supplier = new Supplier();
-		supplier.setName("raja");
-		supplier.setAddress("mdu");
-		supplier.setContactNum("7418803793");
+		supplier.setSupplierName("raja");
 		assertEquals("Added", true, supplierdao.addSupplier(supplier));
 
 		supplier = new Supplier();
-		supplier.setName("aathi");
-		supplier.setAddress("chn");
-		supplier.setContactNum("7418803792");
+		supplier.setSupplierName("aathi");
 		assertEquals("Added", true, supplierdao.addSupplier(supplier));
 	}
 
@@ -49,7 +45,7 @@ public class SupplierTest {
 	public void updateSupplierTest() {
 		// update
 		supplier = supplierdao.get(4);
-		supplier.setAddress("madurai");
+		supplier.setSupplierName("madurai");
 		assertEquals("Updated", true, supplierdao.updateSupplier(supplier));
 	}
 

@@ -33,12 +33,7 @@ public class HomeController {
 		return new ModelAndView("login");
 	}
 	
-	@RequestMapping(value="/adminPage",method=RequestMethod.GET)
-	public ModelAndView adminPage()
-	{
-		return new ModelAndView("adminPage");
-	}
-	
+		
 	@RequestMapping(value="/add",method=RequestMethod.GET)
 	public ModelAndView register()
 	{
@@ -51,9 +46,7 @@ public class HomeController {
 	{
 		ModelAndView mv = new ModelAndView("home");
 		Supplier supplier = new Supplier();
-		supplier.setName(request.getParameter("name"));
-		supplier.setAddress(request.getParameter("address"));
-		supplier.setContactNum(request.getParameter("contactNum"));
+		supplier.setSupplierName(request.getParameter("name"));
 		supplierdao.addSupplier(supplier);
 		return mv;		
 	}
