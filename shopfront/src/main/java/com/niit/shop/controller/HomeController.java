@@ -27,6 +27,18 @@ public class HomeController {
 		return mv;
 	}
 	
+	@RequestMapping(value="/login",method=RequestMethod.GET)
+	public ModelAndView login()
+	{
+		return new ModelAndView("login");
+	}
+	
+	@RequestMapping(value="/adminPage",method=RequestMethod.GET)
+	public ModelAndView adminPage()
+	{
+		return new ModelAndView("adminPage");
+	}
+	
 	@RequestMapping(value="/add",method=RequestMethod.GET)
 	public ModelAndView register()
 	{

@@ -1,0 +1,18 @@
+body {
+    padding-top: 50px;
+}
+
+.btn-login {
+	background-color: #59B2E0;
+	outline: none;
+	color: #fff;
+	font-size: 14px;
+	height: auto;
+	font-weight: normal;
+	padding: 20px 0;
+	text-transform: uppercase;
+	border-color: #59B2E6;
+	float:center;
+	width:40%;	
+}
+

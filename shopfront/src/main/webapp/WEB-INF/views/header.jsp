@@ -31,7 +31,7 @@
       <ul class="nav navbar-nav navbar-right mr-auto">
         <li><a href="home"><span class="glyphicon glyphicon-home"></span> Home</a></li>
         <li><a href="#">Register</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
         
       </ul>
     </div>
