@@ -1,7 +1,5 @@
 package com.niit.shop.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -11,14 +9,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.niit.shop.shopback.dao.SupplierDao;
-import com.niit.shop.shopback.model.Supplier;
+import com.niit.shop.shopback.dao.UserDao;
+import com.niit.shop.shopback.model.User;
 
 @Controller
 public class HomeController {
 
 	@Autowired
-	private SupplierDao supplierdao;
+	private UserDao userdao;
 	
 	@RequestMapping(value= {"/","home"},method=RequestMethod.GET)
 	public ModelAndView index()
@@ -33,30 +31,35 @@ public class HomeController {
 		return new ModelAndView("login");
 	}
 	
-		
-	@RequestMapping(value="/add",method=RequestMethod.GET)
+			
+	@RequestMapping(value="/register",method=RequestMethod.GET)
 	public ModelAndView register()
 	{
-		ModelAndView mv = new ModelAndView("add");
+		ModelAndView mv = new ModelAndView("register");
 		return mv;
 	}
 	
-	@RequestMapping(value="/add",method = RequestMethod.POST)
+	@RequestMapping(value="/register",method = RequestMethod.POST)
 	public ModelAndView addSupplier(HttpServletRequest request, HttpServletResponse response)
 	{
 		ModelAndView mv = new ModelAndView("home");
-		Supplier supplier = new Supplier();
-		supplier.setSupplierName(request.getParameter("name"));
-		supplierdao.addSupplier(supplier);
+		User user = new User();
+		user.setAddress(request.getParameter("address"));
+		user.setCountry(request.getParameter("country"));
+		user.setEmail(request.getParameter("email"));
+		user.setMobile(request.getParameter("mobile"));
+		user.setPassword(request.getParameter("password"));
+		user.setUserName(request.getParameter("userName"));
+		userdao.insertUser(user);
 		return mv;		
 	}
 	
-	@RequestMapping(value="/view")
+	/*@RequestMapping(value="/view")
 	public ModelAndView suppliersList(HttpServletRequest request)
 	{
 		List<Supplier> list=supplierdao.supplierList();  
 		ModelAndView mv = new ModelAndView("view");
 		mv.addObject("list",list);
 		return mv;  
-	}
+	}*/
 }

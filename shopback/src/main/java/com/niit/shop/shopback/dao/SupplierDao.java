@@ -8,7 +8,6 @@ public interface SupplierDao {
 	
 	Supplier get(int id);
 	List<Supplier> supplierList();
-	
 	boolean addSupplier(Supplier supplier);
 	boolean deleteSupplier(Supplier supplier);
 	boolean updateSupplier(Supplier supplier);

@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,20 +19,7 @@
 	<br><br/>
 		<div class="row content">
 		<br>
-			<div class="col-sm-2 sidenav">
-<form action="add" method="get">
-				<div class="clearfix">
-					<button type="submit" class="signupbtn" >Add Supplier</button>
-				</div>
-				</form>
-<br><br>
-<form action="view">
-				<div class="clearfix">
-					<button type="submit" class="signupbtn">View Supplier</button>
-				</div>
-</form>
-			</div>
-
+			<div class="col-sm-2 sidenav"></div>
 			<div class="col-sm-8">
 				<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 					<ol class="carousel-indicators">
@@ -64,12 +50,7 @@
 				</div>
 			</div>
 			<div class="col-sm-2 sidenav">
-				<div class="well">
-					<p>ADS</p>
-				</div>
-				<div class="well">
-					<p>ADS</p>
-				</div>
+				
 			</div>
 		</div>
 	</div>

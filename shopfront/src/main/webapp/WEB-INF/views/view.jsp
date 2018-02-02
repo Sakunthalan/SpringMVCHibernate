@@ -8,32 +8,50 @@
 <link rel="stylesheet" href="./resources/registercss.css">
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Suppliers</title>
+<title>View Page</title>
 
 </head>
 <body>
-<%@include file="header.jsp"  %>
-<br><br><br>
+<%@include file="header.jsp"%>
+	<br/> 
+<div class="container">
+	<div class="col-sm-2"></div>
+	<div class = "col-sm-8" align="center">
+		<ul class="nav nav-pills nav-justified">
+    	<li class="active"><a data-toggle="pill" href="#cat"><b>CATEGORY</b></a></li>
+    	<li><a data-toggle="pill" href="#sup"><b>SUPPLIER</b></a></li>
+    	<li><a data-toggle="pill" href="#prod"><b>PRODUCT</b></a></li>    
+		</ul>
+		
+		<div class="tab-content">
+		
+        <div id="cat" class="tab-pane fade in active"><br><br>
+  			<h2>Category List</h2>
+			<table class="table table-striped" border="1">
+   			<thead>
+      			<tr>
+        			<th>Category Id</th>
+        			<th>Category Name</th>
+      			</tr>
+    		</thead>
+    		<tbody>
+    		<c:forEach var="cat" items="${clist}">
+      			<tr>
+        			<td>${cat.categoryId}</td>  
+   					<td>${cat.categoryName}</td>
+      			</tr>
+      		</c:forEach>
+      		</tbody>
+  			</table>
+		</div>		
+		 <div id="sup" class="tab-pane fade"><br><br>
+  			<h2>Category List</h2>
+		</div>	
+		</div>
+	</div>
+</div>
 <div class="col-sm-2"></div>
-<div class = "col-sm-8" align="center" >
-<h1>Suppliers List</h1>  
-<table >  
-<tr><th>Id</th><th>Name</th><th>Address</th><th>Contact Number</th><th>Edit</th><th>Delete</th></tr>  
-   <c:forEach var="sup" items="${list}">   
-   <tr>  
-   <td>${sup.id}</td>  
-   <td>${sup.name}</td>  
-   <td>${sup.address}</td>
-   <td>${sup.contactNum}</td>  
-   <td><a href="#">Edit</a></td>  
-   <td><a href="#">Delete</a></td>  
-   </tr>  
-   </c:forEach>  
-   </table>
-   
-   <br/>  <br/>
-   <button type="submit" class="signupbtn">Add Supplier</button> 
-</div>  
+<br>
 <%@include file="footer.jsp"  %>
 </body>
 </html>

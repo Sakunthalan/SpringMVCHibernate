@@ -14,10 +14,10 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import com.niit.shop.shopback.impl.CategoryImpl;
-import com.niit.shop.shopback.impl.UserImpl;
+import com.niit.shop.shopback.model.Category;
+import com.niit.shop.shopback.model.Product;
 import com.niit.shop.shopback.model.Supplier;
-
+import com.niit.shop.shopback.model.User;
 
 @Configuration
 @ComponentScan({"com.niit.shop.shopback"})
@@ -47,7 +47,10 @@ public class HibernateConfig {
     public SessionFactory sessionFactory(DataSource dataSource) {
         LocalSessionFactoryBuilder builder = new LocalSessionFactoryBuilder(dataSource);
         builder.addProperties(getHibernateProperties());
-        builder.addAnnotatedClass(Supplier.class);         
+        builder.addAnnotatedClass(Supplier.class); 
+        builder.addAnnotatedClass(User.class);
+        builder.addAnnotatedClass(Category.class); 
+        builder.addAnnotatedClass(Product.class);
         return builder.buildSessionFactory();
     }
 	
@@ -57,17 +60,5 @@ public class HibernateConfig {
         return new HibernateTransactionManager(sessionFactory);
     }
 	
-	@Autowired
-	@Bean(name="categorydao")
-	public CategoryImpl getCategoryData(SessionFactory sessionFactory)
-	{
-		return new CategoryImpl(sessionFactory);
-	}
 	
-	@Autowired
-	@Bean(name="userdao")
-	public UserImpl getUserData(SessionFactory sessionFactory)
-	{
-		return new UserImpl(sessionFactory);
-	}
 }

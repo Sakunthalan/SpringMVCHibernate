@@ -8,39 +8,40 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.niit.shop.shopback.dao.CategoryDao;
+import com.niit.shop.shopback.dao.ProductDao;
 import com.niit.shop.shopback.model.Category;
+import com.niit.shop.shopback.model.Product;
 
-@Repository("categorydao")
+@Repository("productdao")
 @Transactional
-public class CategoryImpl implements CategoryDao{
+public class ProductImpl implements ProductDao {
 
 	@Autowired
 	private SessionFactory sessionFactory;
 
 	@Override
-	public void insertCategory(Category category) {
+	public void insertProduct(Product product) {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		session.saveOrUpdate(category);
+		session.saveOrUpdate(product);
 		session.getTransaction().commit();
 		session.close();
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
-	public List<Category> categoryList() {
+	public Product get(int id) {
+		return sessionFactory.getCurrentSession().get(Product.class, Integer.valueOf(id));
+	}
+
+	@Override
+	public List<Product> productList() {
 		Session session = sessionFactory.openSession();
-		session.beginTransaction();		
-		List<Category> list=session.createQuery("from CategoryTable").list();
+		session.beginTransaction();
+		@SuppressWarnings("unchecked")
+		List<Product> list=session.createQuery("from ProductTable").list();
 		session.getTransaction().commit();
 		session.close();
 		return list;
-	}
-
-	@Override
-	public Category get(int id) {
-		return sessionFactory.getCurrentSession().get(Category.class, Integer.valueOf(id));
 	}
 
 }

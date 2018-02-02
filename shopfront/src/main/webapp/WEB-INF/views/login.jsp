@@ -17,16 +17,16 @@
     <div class="col-md-4"></div>
         <div class="col-md-4">
             <div class="form-login">
-            <h4>Login</h4>
-            <input type="text" id="adminName" class="form-control input-sm chat-input" placeholder="username" />
+            <h4>Login</h4><form method="post" action="adminLogin">
+            <input type="text" name="adminName" id="adminName" class="form-control input-sm chat-input" placeholder="username" />
             <br>
-            <input type="password" id="adminPassword" class="form-control input-sm chat-input" placeholder="password" />
+            <input type="password" name="adminPassword" id="adminPassword" class="form-control input-sm chat-input" placeholder="password" />
             <br>
             <div class="wrapper">
-            <span class="group-btn">     
-                <a href="adminPage" class="btn btn-primary btn-md">LOGIN <i class="fa fa-sign-in"></i></a>
+            <span class="group-btn">  
+            <button type="submit" class="btn btn-primary btn-md">LOGIN <i class="fa fa-sign-in"></i></button>   
             </span>
-            </div>
+            </div></form>
             </div>
         </div>
     </div>

@@ -33,10 +33,15 @@ public class SupplierImpl implements SupplierDao{
 		public List<Supplier> supplierList() {
 			Session session = sessionFactory.openSession();
 			session.beginTransaction();
-			List<Supplier> list=session.createQuery("from Suppliers").list();
+			List<Supplier> list=session.createQuery("from SupplierTable").list();
 			session.getTransaction().commit();
 			session.close();
 			return list;
+		}
+		
+		@Override
+		public Supplier get(int id) {			
+			return sessionFactory.getCurrentSession().get(Supplier.class, Integer.valueOf(id));
 		}
 
 		@Override
@@ -60,9 +65,6 @@ public class SupplierImpl implements SupplierDao{
 			return true;
 		}
 
-		@Override
-		public Supplier get(int id) {			
-			return sessionFactory.getCurrentSession().get(Supplier.class, Integer.valueOf(id));
-		}
+		
 			
 }
