@@ -24,6 +24,7 @@
   	
   	</button>
   	<a class="navbar-brand" href="#">Shoppify</a>
+  	<a class="navbar-brand" href="login">Admin</a>
   	</div>
     
     <div class="collapse navbar-collapse" id="bs-navbar-collapse">

@@ -5,7 +5,6 @@
 <html>
 <head>
 <%@ page isELIgnored="false" %>
-<link rel="stylesheet" href="./resources/registercss.css">
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>View Page</title>
@@ -13,9 +12,9 @@
 </head>
 <body>
 <%@include file="header.jsp"%>
-	<br/> 
+	<br><br><br><br>
 <div class="container">
-	<div class="col-sm-2"></div>
+	<div class="col-sm-2"><h4><a href="adminPage">Admin Home</a></h4></div>
 	<div class = "col-sm-8" align="center">
 		<ul class="nav nav-pills nav-justified">
     	<li class="active"><a data-toggle="pill" href="#cat"><b>CATEGORY</b></a></li>
@@ -44,11 +43,27 @@
       		</tbody>
   			</table>
 		</div>		
-		 <div id="sup" class="tab-pane fade"><br><br>
-  			<h2>Category List</h2>
+		<div id="sup" class="tab-pane fade"><br><br>
+  			<h2>Supplier List</h2>
+  			<table class="table table-striped" border="1">
+   			<thead>
+      			<tr>
+        			<th>Supplier Id</th>
+        			<th>Supplier Name</th>
+      			</tr>
+    		</thead>
+    		<tbody>
+    		<c:forEach var="sup" items="${slist}">
+      			<tr>
+        			<td>${sup.supplierId}</td>  
+   					<td>${sup.supplierName}</td>
+      			</tr>
+      		</c:forEach>
+      		</tbody>
+  			</table>
 		</div>	
 		</div>
-	</div>
+ 	</div>
 </div>
 <div class="col-sm-2"></div>
 <br>

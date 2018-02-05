@@ -40,10 +40,12 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="/register",method = RequestMethod.POST)
-	public ModelAndView addSupplier(HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView addUser(HttpServletRequest request, HttpServletResponse response)
 	{
 		ModelAndView mv = new ModelAndView("home");
 		User user = new User();
+		user.setRole("ROLE_USER");
+		user.setEnabled(false);
 		user.setAddress(request.getParameter("address"));
 		user.setCountry(request.getParameter("country"));
 		user.setEmail(request.getParameter("email"));

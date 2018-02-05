@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -36,12 +35,17 @@ public class AdminController {
 	@Autowired
 	private ProductDao productdao;
 	
-	@RequestMapping(value="/adminLogin",method=RequestMethod.POST)
+	@RequestMapping(value= {"/adminLogin"},method=RequestMethod.POST)
 	public ModelAndView adminPage(HttpServletRequest request, HttpServletResponse response)
 	{
 		if(("meena").equalsIgnoreCase(request.getParameter("adminName")) && ("123").equalsIgnoreCase(request.getParameter("adminPassword")))
 		{
-			return new ModelAndView("adminPage");
+			List<Category> clist=categorydao.categoryList();  
+			List<Supplier> slist=supplierdao.supplierList();
+			ModelAndView mv = new ModelAndView("adminPage");
+			mv.addObject("slist",slist);			
+			mv.getModelMap().addAttribute("clist",clist);
+	        return mv; 		
 		}
 		else
 		{
@@ -49,50 +53,37 @@ public class AdminController {
 		}		
 	}
 	
-	@ModelAttribute("CategoryList")
-    public List<Category> populateDepartments()
-    {
+/*	@RequestMapping(value = "/adminPage",method=RequestMethod.GET)
+	public ModelAndView adminPage()
+	{
 		List<Category> clist=categorydao.categoryList();  
-		return clist;
-    }
-	
+		List<Supplier> slist=supplierdao.supplierList();
+		ModelAndView mv = new ModelAndView("adminPage");
+		mv.addObject("slist",slist);			
+		mv.getModelMap().addAttribute("clist",clist);
+        return mv; 
+	}*/
+
 	@RequestMapping(value="/saveSupplier",method = RequestMethod.POST)
 	public ModelAndView addSupplier(HttpServletRequest request, HttpServletResponse response)
 	{
-		ModelAndView mv = new ModelAndView("adminPage");
 		Supplier supplier = new Supplier();
 		supplier.setSupplierId(request.getParameter("sid"));
 		supplier.setSupplierName(request.getParameter("sname"));
 		supplierdao.addSupplier(supplier);
-		return mv;		
+		return new ModelAndView("view");		
 	}
 	
 	@RequestMapping(value="/saveCategory",method = RequestMethod.POST)
 	public ModelAndView addCategory(@RequestParam("cid") String cid, @RequestParam("cname") String cname)
 	{
-		ModelAndView mv = new ModelAndView("adminPage");
+		ModelAndView mv = new ModelAndView("view");
 		Category category = new Category();
 		category.setCategoryId(cid);
 		category.setCategoryName(cname);
 		categorydao.insertCategory(category);
 		return mv;		
 	}
-	
-	@RequestMapping(value= {"/view"},method=RequestMethod.GET)
-	public ModelAndView view()
-	{
-		List<Category> clist=categorydao.categoryList();  
-		ModelAndView mv = new ModelAndView("view");
-		mv.addObject("clist",clist);
-        return mv; 		
-	}
-	
-	@RequestMapping(value="/viewById")	
-    public ModelAndView viewCategoryById(@PathVariable int id){  
-		Category viewById=categorydao.get(id);  
-        return new ModelAndView("viewById","viewById",viewById);  
-    } 
-	
 	
 	@RequestMapping(value= {"/saveProduct"},method = RequestMethod.POST)
 	public String addProduct(HttpServletRequest request, @RequestParam("file")MultipartFile file)
@@ -115,9 +106,28 @@ public class AdminController {
 			os.write(imagebyte);
 			os.close();
 		}
-		catch(Exception e) {}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
 			
-        return "home"; 	
+        return "view"; 	
 	}
+	
+	@RequestMapping(value= {"/view"},method=RequestMethod.GET)
+	public ModelAndView view()
+	{
+		List<Category> clist=categorydao.categoryList();  
+		List<Supplier> slist=supplierdao.supplierList();
+		ModelAndView mv = new ModelAndView("view");
+		mv.addObject("slist",slist);			
+		mv.getModelMap().addAttribute("clist",clist);
+        return mv; 		
+	}
+	
+	@RequestMapping(value="/viewById")	
+    public ModelAndView viewCategoryById(@PathVariable int id){  
+		Category viewById=categorydao.get(id);  
+        return new ModelAndView("viewById","viewById",viewById);  
+    }
 	
 }

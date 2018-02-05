@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.shop.shopback.dao.ProductDao;
-import com.niit.shop.shopback.model.Category;
 import com.niit.shop.shopback.model.Product;
 
 @Repository("productdao")
