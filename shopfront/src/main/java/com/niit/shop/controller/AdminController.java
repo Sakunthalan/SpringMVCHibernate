@@ -35,7 +35,7 @@ public class AdminController {
 	@Autowired
 	private ProductDao productdao;
 	
-	@RequestMapping(value= {"/adminLogin"},method=RequestMethod.POST)
+	/*@RequestMapping(value= {"/adminLogin"},method=RequestMethod.POST)
 	public ModelAndView adminPage(HttpServletRequest request, HttpServletResponse response)
 	{
 		if(("meena").equalsIgnoreCase(request.getParameter("adminName")) && ("123").equalsIgnoreCase(request.getParameter("adminPassword")))
@@ -51,9 +51,9 @@ public class AdminController {
 		{
 			return new ModelAndView("home");
 		}		
-	}
+	}*/
 	
-/*	@RequestMapping(value = "/adminPage",method=RequestMethod.GET)
+	@RequestMapping(value = "/adminPage",method=RequestMethod.GET)
 	public ModelAndView adminPage()
 	{
 		List<Category> clist=categorydao.categoryList();  
@@ -62,40 +62,41 @@ public class AdminController {
 		mv.addObject("slist",slist);			
 		mv.getModelMap().addAttribute("clist",clist);
         return mv; 
-	}*/
+	}
 
 	@RequestMapping(value="/saveSupplier",method = RequestMethod.POST)
 	public ModelAndView addSupplier(HttpServletRequest request, HttpServletResponse response)
 	{
-		Supplier supplier = new Supplier();
+		Supplier supplier=new Supplier();
 		supplier.setSupplierId(request.getParameter("sid"));
 		supplier.setSupplierName(request.getParameter("sname"));
 		supplierdao.addSupplier(supplier);
-		return new ModelAndView("view");		
+		return new ModelAndView("success");		
 	}
 	
 	@RequestMapping(value="/saveCategory",method = RequestMethod.POST)
 	public ModelAndView addCategory(@RequestParam("cid") String cid, @RequestParam("cname") String cname)
 	{
-		ModelAndView mv = new ModelAndView("view");
-		Category category = new Category();
+		Category category=new Category();
+		ModelAndView mv = new ModelAndView("success");
 		category.setCategoryId(cid);
 		category.setCategoryName(cname);
 		categorydao.insertCategory(category);
 		return mv;		
 	}
 	
-	@RequestMapping(value= {"/saveProduct"},method = RequestMethod.POST)
+	@RequestMapping(value= "/saveProduct",method = RequestMethod.POST)
 	public String addProduct(HttpServletRequest request, @RequestParam("file")MultipartFile file)
 	{
 		Product product = new Product();
 		product.setPname(request.getParameter("prodname"));
 		product.setPrice(Float.parseFloat(request.getParameter("prodprice")));
-		product.setCategory(categorydao.get(Integer.parseInt(request.getParameter("prodCategory"))));
-		product.setSupplier(supplierdao.get(Integer.parseInt(request.getParameter("prodSupplier"))));
+		product.setCategory(categorydao.get(request.getParameter("prodCategory")));
+		product.setSupplier(supplierdao.get(request.getParameter("prodSupplier")));
 		product.setStock(Integer.parseInt(request.getParameter("prodstock")));
 		product.setDescription(request.getParameter("proddesc"));	
 		String filePath = request.getSession().getServletContext().getRealPath("/");
+		System.out.println("==========="+filePath);
 		String fileName = file.getOriginalFilename();
 		product.setImgName(fileName);
 		productdao.insertProduct(product);
@@ -110,7 +111,7 @@ public class AdminController {
 			e.printStackTrace();
 		}
 			
-        return "view"; 	
+        return "success"; 	
 	}
 	
 	@RequestMapping(value= {"/view"},method=RequestMethod.GET)
@@ -118,14 +119,16 @@ public class AdminController {
 	{
 		List<Category> clist=categorydao.categoryList();  
 		List<Supplier> slist=supplierdao.supplierList();
+		List<Product> plist=productdao.productList();
 		ModelAndView mv = new ModelAndView("view");
-		mv.addObject("slist",slist);			
+		mv.addObject("slist",slist);	
+		mv.addObject("plist",plist);
 		mv.getModelMap().addAttribute("clist",clist);
         return mv; 		
 	}
 	
 	@RequestMapping(value="/viewById")	
-    public ModelAndView viewCategoryById(@PathVariable int id){  
+    public ModelAndView viewCategoryById(@PathVariable String id){  
 		Category viewById=categorydao.get(id);  
         return new ModelAndView("viewById","viewById",viewById);  
     }

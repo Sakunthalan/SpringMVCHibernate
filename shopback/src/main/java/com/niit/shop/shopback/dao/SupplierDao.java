@@ -6,7 +6,7 @@ import com.niit.shop.shopback.model.Supplier;
 
 public interface SupplierDao {
 	
-	Supplier get(int id);
+	Supplier get(String id);
 	List<Supplier> supplierList();
 	boolean addSupplier(Supplier supplier);
 	boolean deleteSupplier(Supplier supplier);

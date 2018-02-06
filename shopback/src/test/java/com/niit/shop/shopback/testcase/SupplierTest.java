@@ -44,7 +44,7 @@ public class SupplierTest {
 	@Test
 	public void updateSupplierTest() {
 		// update
-		supplier = supplierdao.get(4);
+		supplier = supplierdao.get("4");
 		supplier.setSupplierName("madurai");
 		assertEquals("Updated", true, supplierdao.updateSupplier(supplier));
 	}
@@ -52,7 +52,7 @@ public class SupplierTest {
 	@Test
 	public void deleteSupplierTest() {
 		// delete
-		supplier = supplierdao.get(5);
+		supplier = supplierdao.get("5");
 		assertEquals("Deleted", true, supplierdao.deleteSupplier(supplier));
 	}
 }

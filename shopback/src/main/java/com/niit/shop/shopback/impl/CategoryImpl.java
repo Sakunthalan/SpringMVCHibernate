@@ -39,8 +39,8 @@ public class CategoryImpl implements CategoryDao{
 	}
 
 	@Override
-	public Category get(int id) {
-		return sessionFactory.getCurrentSession().get(Category.class, Integer.valueOf(id));
+	public Category get(String id) {
+		return sessionFactory.getCurrentSession().get(Category.class, id);
 	}
 
 }

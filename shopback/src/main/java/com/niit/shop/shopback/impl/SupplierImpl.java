@@ -40,8 +40,8 @@ public class SupplierImpl implements SupplierDao{
 		}
 		
 		@Override
-		public Supplier get(int id) {			
-			return sessionFactory.getCurrentSession().get(Supplier.class, Integer.valueOf(id));
+		public Supplier get(String id) {			
+			return sessionFactory.getCurrentSession().get(Supplier.class, id);
 		}
 
 		@Override
