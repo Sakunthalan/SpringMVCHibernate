@@ -15,10 +15,40 @@
 <link rel="stylesheet" href="./resources/admin.css">
 </head>
 <body>
+
+<%-- <div class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+  
+  	<div class="navbar-header">
+  	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"data-target="#bs-navbar-collapse">
+  	<span class="sr-only"></span>
+  	<span class="icon-bar"></span>
+  	<span class="icon-bar"></span>
+  	<span class="icon-bar"></span>
+  	
+  	</button>
+  	<a class="navbar-brand" href="#">Shoppify</a>
+  	<a class="navbar-brand" href="adminPage">Admin</a>  	
+  	</div>
+    
+    <div class="collapse navbar-collapse" id="bs-navbar-collapse">
+      <ul class="nav navbar-nav navbar-right mr-auto">
+      	<li>
+        	<a class = "navbar-brand" ><c:if test="${pageContext.request.userPrincipal.name != null}">
+			<h4>Welcome : ${pageContext.request.userPrincipal.name}</h4> </c:if></a>
+        </li>
+        <li><a href="home"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+        <li><a href="logout"> Logout</a></li>        
+      </ul>
+    </div>
+  </div>
+</div> --%>
+
 <%@include file="header.jsp"%>
+	<br/>
 	
 <div class="container">
-  <br><br><h3>Welcome Admin</h3>
+  <br><br>
   <div class="col-md-8 col-md-offset-2">
   
   <ul class="nav nav-pills nav-justified">

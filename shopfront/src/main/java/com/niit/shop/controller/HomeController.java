@@ -25,14 +25,26 @@ public class HomeController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/login",method=RequestMethod.GET)
+	@RequestMapping(value="/login")
 	public ModelAndView login()
 	{
 		return new ModelAndView("login");
 	}
 	
+	@RequestMapping(value="/welcome")
+	public ModelAndView welcome()
+	{
+		return new ModelAndView("welcome");
+	}
+	
+	@RequestMapping(value="/logPage")
+	public String logPage()
+	{
+		return "redirect:welcome";
+	}
+	
 			
-	@RequestMapping(value="/register",method=RequestMethod.GET)
+	@RequestMapping(value="/register")
 	public ModelAndView register()
 	{
 		ModelAndView mv = new ModelAndView("register");
@@ -65,3 +77,4 @@ public class HomeController {
 		return mv;  
 	}*/
 }
+

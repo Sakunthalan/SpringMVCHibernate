@@ -38,22 +38,15 @@ public class AdminController {
 	/*@RequestMapping(value= {"/adminLogin"},method=RequestMethod.POST)
 	public ModelAndView adminPage(HttpServletRequest request, HttpServletResponse response)
 	{
-		if(("meena").equalsIgnoreCase(request.getParameter("adminName")) && ("123").equalsIgnoreCase(request.getParameter("adminPassword")))
-		{
-			List<Category> clist=categorydao.categoryList();  
-			List<Supplier> slist=supplierdao.supplierList();
-			ModelAndView mv = new ModelAndView("adminPage");
-			mv.addObject("slist",slist);			
-			mv.getModelMap().addAttribute("clist",clist);
-	        return mv; 		
-		}
-		else
-		{
-			return new ModelAndView("home");
-		}		
+		List<Category> clist=categorydao.categoryList();  
+		List<Supplier> slist=supplierdao.supplierList();
+		ModelAndView mv = new ModelAndView("adminPage");
+		mv.addObject("slist",slist);			
+		mv.getModelMap().addAttribute("clist",clist);
+        return mv; 
 	}*/
 	
-	@RequestMapping(value = "/adminPage",method=RequestMethod.GET)
+	@RequestMapping(value = "/adminPage")
 	public ModelAndView adminPage()
 	{
 		List<Category> clist=categorydao.categoryList();  
@@ -71,14 +64,14 @@ public class AdminController {
 		supplier.setSupplierId(request.getParameter("sid"));
 		supplier.setSupplierName(request.getParameter("sname"));
 		supplierdao.addSupplier(supplier);
-		return new ModelAndView("success");		
+		return new ModelAndView("redirect:adminPage");		
 	}
 	
 	@RequestMapping(value="/saveCategory",method = RequestMethod.POST)
 	public ModelAndView addCategory(@RequestParam("cid") String cid, @RequestParam("cname") String cname)
 	{
 		Category category=new Category();
-		ModelAndView mv = new ModelAndView("success");
+		ModelAndView mv = new ModelAndView("redirect:adminPage");
 		category.setCategoryId(cid);
 		category.setCategoryName(cname);
 		categorydao.insertCategory(category);
@@ -111,7 +104,22 @@ public class AdminController {
 			e.printStackTrace();
 		}
 			
-        return "success"; 	
+        return "redirect:adminPage"; 	
+	}
+	
+	@RequestMapping("/check")
+	public ModelAndView success() {
+		return new ModelAndView("success");
+	}
+	
+	@RequestMapping("/error")
+	public ModelAndView error() {
+		return new ModelAndView("error");
+	}
+	
+	@RequestMapping("/userDenied")
+	public ModelAndView userDenied() {
+		return new ModelAndView("userDenied");
 	}
 	
 	@RequestMapping(value= {"/view"},method=RequestMethod.GET)

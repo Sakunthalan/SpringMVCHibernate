@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1" isELIgnored="false" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -8,7 +10,9 @@
 <title>Login</title>
 </head>
 <body>
-<%@include file="header.jsp"%>
+
+<%@include file="header.jsp" %>
+
 	<br/>
 <div class="container">
 <br><br><br><br>
@@ -16,16 +20,18 @@
     <div class="col-md-4"></div>
         <div class="col-md-4">
             <div class="form-login">
-            <h4>Login</h4><form method="post" action="adminLogin">
-            <input type="text" name="adminName" id="adminName" class="form-control input-sm chat-input" placeholder="username" />
+            <h4>Login</h4><form method="post" action="<c:url value='/j_spring_security_check'/>">
+            <input type="text" name="username" class="form-control input-sm chat-input" placeholder="username" />
             <br>
-            <input type="password" name="adminPassword" id="adminPassword" class="form-control input-sm chat-input" placeholder="password" />
+            <input type="password" name="password" class="form-control input-sm chat-input" placeholder="password" />
             <br>
             <div class="wrapper">
             <span class="group-btn">  
             <button type="submit" class="btn btn-primary btn-md">LOGIN <i class="fa fa-sign-in"></i></button>   
             </span>
-            </div></form>
+            </div>
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+            </form>
             </div>
         </div>
     </div>
