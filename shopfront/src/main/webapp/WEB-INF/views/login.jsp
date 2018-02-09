@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="./resources/logincss.css">
 <title>Login</title>
 </head>
-<body>
+<body background="./resources/back.jpg">
 
 <%@include file="header.jsp" %>
 

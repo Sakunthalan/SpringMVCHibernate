@@ -28,7 +28,7 @@ public class ProductImpl implements ProductDao {
 	}
 
 	@Override
-	public Product get(int id) {
+	public Product get(int id) { //also we can give string as param
 		return sessionFactory.getCurrentSession().get(Product.class, Integer.valueOf(id));
 	}
 
@@ -43,4 +43,32 @@ public class ProductImpl implements ProductDao {
 		return list;
 	}
 
+	@Override
+	public List<Product> getProdByCategoryId(String categoryId) {
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		List<Product> list=session.createQuery("from ProductTable where categoryid=" + categoryId).list();
+		session.getTransaction().commit();
+		session.close();
+		return list;
+	}
+
+	@Override
+	public void deleteProduct(int pid) {
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		Product prod = (Product)session.get(Product.class, pid);
+		session.delete(prod);
+		session.getTransaction().commit();
+		session.close();
+	}
+
+	@Override
+	public void updateProduct(Product prod) {
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		session.delete(prod);
+		session.getTransaction().commit();
+		session.close();
+	}
 }

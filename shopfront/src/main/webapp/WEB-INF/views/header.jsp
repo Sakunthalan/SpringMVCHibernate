@@ -24,11 +24,20 @@
   	<span class="icon-bar"></span>
   	
   	</button>
-  	<a class="navbar-brand" href="#">Shoppify</a>
-  	<a class="navbar-brand" href="adminPage">Admin</a>
+ 	<a class="navbar-brand" href="home">Shoppify</a>
   	</div>
     
     <div class="collapse navbar-collapse" id="bs-navbar-collapse">
+    	 <ul class="nav navbar-nav navbar-left mr-auto">
+      		<li><a href="adminPage">Admin</a></li>
+     		<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Product List<span class="caret"></span></a>
+        		<ul class="dropdown-menu">
+        		<c:forEach var="cat" items="${clist}">
+        		<li><a href="custProductList?categoryId=${cat.categoryId}">${cat.categoryName}</a></li>
+         		</c:forEach> 
+        		</ul>
+      		</li>
+    	</ul> 
       <ul class="nav navbar-nav navbar-right mr-auto">
       	<c:if test="${pageContext.request.userPrincipal.name == null}">
         	<li><a href="home"><span class="glyphicon glyphicon-home"></span> Home</a></li>

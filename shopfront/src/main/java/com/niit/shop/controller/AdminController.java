@@ -35,18 +35,7 @@ public class AdminController {
 	@Autowired
 	private ProductDao productdao;
 	
-	/*@RequestMapping(value= {"/adminLogin"},method=RequestMethod.POST)
-	public ModelAndView adminPage(HttpServletRequest request, HttpServletResponse response)
-	{
-		List<Category> clist=categorydao.categoryList();  
-		List<Supplier> slist=supplierdao.supplierList();
-		ModelAndView mv = new ModelAndView("adminPage");
-		mv.addObject("slist",slist);			
-		mv.getModelMap().addAttribute("clist",clist);
-        return mv; 
-	}*/
-	
-	@RequestMapping(value = "/adminPage")
+	@RequestMapping(value = {"/adminPage"})
 	public ModelAndView adminPage()
 	{
 		List<Category> clist=categorydao.categoryList();  
@@ -106,22 +95,7 @@ public class AdminController {
 			
         return "redirect:adminPage"; 	
 	}
-	
-	@RequestMapping("/check")
-	public ModelAndView success() {
-		return new ModelAndView("success");
-	}
-	
-	@RequestMapping("/error")
-	public ModelAndView error() {
-		return new ModelAndView("error");
-	}
-	
-	@RequestMapping("/userDenied")
-	public ModelAndView userDenied() {
-		return new ModelAndView("userDenied");
-	}
-	
+		
 	@RequestMapping(value= {"/view"},method=RequestMethod.GET)
 	public ModelAndView view()
 	{
@@ -141,4 +115,22 @@ public class AdminController {
         return new ModelAndView("viewById","viewById",viewById);  
     }
 	
+	@RequestMapping("/userDenied")
+	public ModelAndView userDenied() {
+		return new ModelAndView("userDenied");
+	}
+	
+/*	@RequestMapping("/adminProdList")
+	public ModelAndView adminProdList()
+	{
+		ModelAndView mv = new ModelAndView();
+		return mv;
+	}
+	
+	@RequestMapping("/updateProd")
+	public ModelAndView updateProd()
+	{
+		ModelAndView mv = new ModelAndView();
+		return mv;
+	}*/
 }
