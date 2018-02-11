@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,13 +33,17 @@ public class HomeController {
 	@Autowired
 	private ProductDao productdao;
 	
-	@RequestMapping(value= {"/","home","header"},method=RequestMethod.GET)
+	@RequestMapping(value= {"/","home"},method=RequestMethod.GET)
 	public ModelAndView index()
 	{
 		ModelAndView mv = new ModelAndView("home");
-		List<Category> clist=categorydao.categoryList(); 
-		mv.getModelMap().addAttribute("clist",clist);
 		return mv;
+	}
+	
+	@ModelAttribute
+	public void addAttributes(Model model)
+	{
+		model.addAttribute("clist",categorydao.categoryList());
 	}
 	
 	@RequestMapping(value="/login")

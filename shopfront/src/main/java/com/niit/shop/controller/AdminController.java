@@ -78,7 +78,7 @@ public class AdminController {
 		product.setStock(Integer.parseInt(request.getParameter("prodstock")));
 		product.setDescription(request.getParameter("proddesc"));	
 		String filePath = request.getSession().getServletContext().getRealPath("/");
-		System.out.println("==========="+filePath);
+		//System.out.println("==========="+filePath);
 		String fileName = file.getOriginalFilename();
 		product.setImgName(fileName);
 		productdao.insertProduct(product);
@@ -120,14 +120,60 @@ public class AdminController {
 		return new ModelAndView("userDenied");
 	}
 	
-/*	@RequestMapping("/adminProdList")
-	public ModelAndView adminProdList()
+	@RequestMapping("/adminProductList")
+	public ModelAndView adminProductList()
 	{
-		ModelAndView mv = new ModelAndView();
+		ModelAndView mv = new ModelAndView("adminProductList");
+		List<Product> plist=productdao.productList();
+		mv.addObject("prodList",plist);
 		return mv;
 	}
 	
-	@RequestMapping("/updateProd")
+	@RequestMapping(value = {"/updateProduct"})
+	public ModelAndView updateProduct(@RequestParam("pid") int pid)
+	{
+		List<Category> clist=categorydao.categoryList();  
+		List<Supplier> slist=supplierdao.supplierList();
+		ModelAndView mv = new ModelAndView("updateProduct");
+		Product product = productdao.get(pid);
+		mv.addObject("prod",product);
+		mv.addObject("slist",slist);			
+		mv.getModelMap().addAttribute("clist",clist);
+        return mv; 
+	}
+	
+	@RequestMapping(value= "/updateProduct",method = RequestMethod.POST)
+	public String updateProduct(HttpServletRequest request, @RequestParam("file")MultipartFile file)
+	{
+		Product product = new Product();
+		System.out.println("==========="+request.getParameter("pid"));
+		product.setPid(Integer.parseInt(request.getParameter("pid")));
+		product.setPname(request.getParameter("prodname"));
+		product.setPrice(Float.parseFloat(request.getParameter("prodprice")));
+		product.setCategory(categorydao.get(request.getParameter("prodCategory")));
+		product.setSupplier(supplierdao.get(request.getParameter("prodSupplier")));
+		product.setStock(Integer.parseInt(request.getParameter("prodstock")));
+		product.setDescription(request.getParameter("proddesc"));	
+		String filePath = request.getSession().getServletContext().getRealPath("/");
+		//System.out.println("==========="+filePath);
+		String fileName = file.getOriginalFilename();
+		product.setImgName(fileName);
+		productdao.insertProduct(product);
+		try
+		{
+			byte imagebyte[] = file.getBytes();
+			BufferedOutputStream os = new BufferedOutputStream(new FileOutputStream(filePath+"/resources/"+fileName));
+			os.write(imagebyte);
+			os.close();
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+			
+        return "redirect:adminProductList"; 	
+	}
+	
+/*	@RequestMapping("/updateProd")
 	public ModelAndView updateProd()
 	{
 		ModelAndView mv = new ModelAndView();
