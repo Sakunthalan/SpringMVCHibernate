@@ -37,9 +37,10 @@
       		<button type="submit"><i class="fa fa-search"></i></button>
     		</form>
   		</div></div></div><br>
-		<table class="table table-striped" border="1">
+		<table class="table table-striped" border="1">		 
 			<thead>
 				<tr>
+					<th>SNO</th>
 					<th>Product Id</th>
 					<th>Product Name</th>
 					<th>Product Description</th>
@@ -51,9 +52,11 @@
 					<th>Actions</th>
 				</tr>
 			</thead>
+			<%! int i = 1; %>
 			<tbody>
 				<c:forEach var="prod" items="${prodList}">
 					<tr>
+						<td><%=i++ %></td>
 						<td>${prod.pid}</td>
 						<td>${prod.pname}</td>
 						<td>${prod.description}</td>
@@ -63,7 +66,7 @@
 						<td>${prod.stock}</td>
 						<td><img src="./resources/${prod.imgName}" width="50" height="50" /></td>
 						<td><div class="row"><div class="col-sm-5"><a href="updateProduct?pid=${prod.pid}" class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span> </a></div>
-							<div class="col-sm-5"><a href="#" class="btn btn-info"><span class="glyphicon glyphicon-trash"></span> </a></div></div></td>
+							<div class="col-sm-5"><a href="deleteProduct/${prod.pid}" class="btn btn-info"><span class="glyphicon glyphicon-trash"></span> </a></div></div></td>
 					</tr>
 				</c:forEach>
 			</tbody>

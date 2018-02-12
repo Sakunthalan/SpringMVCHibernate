@@ -20,7 +20,7 @@
 <div class="container">
 	 <br><br><br>
   <div class="col-md-8 col-md-offset-2">
-		<form:form class="form-horizontal" method="post" action="updateProduct" enctype="multipart/form-data">
+		<form:form class="form-horizontal" method="post" action="updateProduct?pid=${prod.pid}" enctype="multipart/form-data">
 			<div class = "col-sm-10 col-sm-offset-2"><table> 			  
          	<tr>    
           		<td><b>Product Name</b></td><td><input type="text" name="prodname" class="form-control" value="${prod.pname}"></td>  

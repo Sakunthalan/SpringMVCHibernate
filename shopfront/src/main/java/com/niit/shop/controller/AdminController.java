@@ -143,11 +143,10 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value= "/updateProduct",method = RequestMethod.POST)
-	public String updateProduct(HttpServletRequest request, @RequestParam("file")MultipartFile file)
+	public String updateProduct(HttpServletRequest request, @RequestParam("file")MultipartFile file, @RequestParam("pid") int pid)
 	{
 		Product product = new Product();
-		System.out.println("==========="+request.getParameter("pid"));
-		product.setPid(Integer.parseInt(request.getParameter("pid")));
+		product.setPid(pid);
 		product.setPname(request.getParameter("prodname"));
 		product.setPrice(Float.parseFloat(request.getParameter("prodprice")));
 		product.setCategory(categorydao.get(request.getParameter("prodCategory")));
@@ -170,13 +169,14 @@ public class AdminController {
 			e.printStackTrace();
 		}
 			
-        return "redirect:adminProductList"; 	
+        return "redirect:adminProductList?update"; 	
 	}
 	
-/*	@RequestMapping("/updateProd")
-	public ModelAndView updateProd()
+	@RequestMapping(value="/deleteProduct/{pid}")
+	public String deleteProd(@PathVariable("pid") int pid)
 	{
-		ModelAndView mv = new ModelAndView();
-		return mv;
-	}*/
+		productdao.deleteProduct(pid);
+		return "redirect:/adminProductList";
+	}
+
 }
