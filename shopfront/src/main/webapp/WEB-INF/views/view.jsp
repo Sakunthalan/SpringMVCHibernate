@@ -7,6 +7,10 @@
 <%@ page isELIgnored="false" %>
 
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link	href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"	rel="stylesheet" type="text/css" />
+<link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <title>View Page</title>
 
 </head>
@@ -14,7 +18,7 @@
 <%@include file="header.jsp"%>
 	<br><br><br><br>
 <div class="container">
-	<div class="col-sm-2"><h4><a href="adminPage">Admin Home</a></h4></div>
+	<div class="col-sm-2"></div>
 	<div class = "col-sm-8" align="center">
 		<ul class="nav nav-pills nav-justified">
     	<li class="active"><a data-toggle="pill" href="#cat"><b>CATEGORY</b></a></li>
@@ -83,7 +87,7 @@
    					<td>${prod.description}</td>
    					<td>${prod.price}</td>
    					<td>${prod.stock}</td>
-   					<td><img src="./resources/${prod.imgName}" width="50" height="50"/></td>
+   					<td><img src="../resources/${prod.imgName}" width="50" height="50"/></td>
       			</tr>
       		</c:forEach>
       		</tbody>

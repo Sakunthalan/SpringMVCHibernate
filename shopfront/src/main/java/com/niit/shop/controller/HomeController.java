@@ -1,7 +1,5 @@
 package com.niit.shop.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -18,7 +16,6 @@ import com.niit.shop.shopback.dao.CategoryDao;
 import com.niit.shop.shopback.dao.ProductDao;
 import com.niit.shop.shopback.dao.SupplierDao;
 import com.niit.shop.shopback.dao.UserDao;
-import com.niit.shop.shopback.model.Category;
 import com.niit.shop.shopback.model.User;
 
 @Controller
@@ -26,12 +23,15 @@ public class HomeController {
 
 	@Autowired
 	private UserDao userdao;
-		
+	
+	@Autowired
+	private ProductDao productdao;
+	
 	@Autowired
 	private CategoryDao categorydao;
 	
 	@Autowired
-	private ProductDao productdao;
+	private SupplierDao supplierdao;
 	
 	@RequestMapping(value= {"/","home"},method=RequestMethod.GET)
 	public ModelAndView index()
@@ -40,33 +40,26 @@ public class HomeController {
 		return mv;
 	}
 	
-	@ModelAttribute
-	public void addAttributes(Model model)
-	{
-		model.addAttribute("clist",categorydao.categoryList());
-	}
-	
 	@RequestMapping(value="/login")
 	public ModelAndView login()
 	{
 		return new ModelAndView("login");
 	}
 	
-	@RequestMapping(value="/welcome")
-	public ModelAndView welcome()
-	{
-		return new ModelAndView("welcome");
-	}
-	
 	@RequestMapping(value="/logPage")
 	public String logPage()
 	{
-		return "redirect:welcome";
+		return "redirect:home";
 	}
 	
 	@RequestMapping("/error")
 	public ModelAndView error() {
 		return new ModelAndView("error");
+	}
+	
+	@RequestMapping("/userDenied")
+	public ModelAndView userDenied() {
+		return new ModelAndView("userDenied");
 	}
 			
 	@RequestMapping(value="/register")
@@ -74,6 +67,14 @@ public class HomeController {
 	{
 		ModelAndView mv = new ModelAndView("register");
 		return mv;
+	}
+	
+	@ModelAttribute
+	public void addAttributes(Model model)
+	{
+		model.addAttribute("plist", productdao.productList());
+		model.addAttribute("slist", supplierdao.supplierList());
+		model.addAttribute("clist",categorydao.categoryList());
 	}
 	
 	@RequestMapping(value="/register",method = RequestMethod.POST)
@@ -101,5 +102,6 @@ public class HomeController {
 		mv.addObject("prodList",productdao.getProdByCategoryId(cid));
 		return mv;  
 	}
+		
 }
 

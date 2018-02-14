@@ -1,16 +1,20 @@
 package com.niit.shop.shopback.model;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity(name="UserTable")
 public class User {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	//@OneToMany
 	private int id;
+	
 	private String userName;
 	private String email;
 	private String mobile;
@@ -19,6 +23,7 @@ public class User {
 	private String password;
 	private String role;
 	private boolean enabled;
+	
 	public String getRole() {
 		return role;
 	}

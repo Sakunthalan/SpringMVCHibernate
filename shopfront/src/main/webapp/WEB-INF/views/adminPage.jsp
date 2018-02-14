@@ -12,37 +12,9 @@
 <link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="./resources/admin.css">
+<link rel="stylesheet" href="../resources/admin.css">
 </head>
 <body>
-
-<%-- <div class="navbar navbar-default navbar-fixed-top">
-  <div class="container">
-  
-  	<div class="navbar-header">
-  	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"data-target="#bs-navbar-collapse">
-  	<span class="sr-only"></span>
-  	<span class="icon-bar"></span>
-  	<span class="icon-bar"></span>
-  	<span class="icon-bar"></span>
-  	
-  	</button>
-  	<a class="navbar-brand" href="#">Shoppify</a>
-  	<a class="navbar-brand" href="adminPage">Admin</a>  	
-  	</div>
-    
-    <div class="collapse navbar-collapse" id="bs-navbar-collapse">
-      <ul class="nav navbar-nav navbar-right mr-auto">
-      	<li>
-        	<a class = "navbar-brand" ><c:if test="${pageContext.request.userPrincipal.name != null}">
-			<h4>Welcome : ${pageContext.request.userPrincipal.name}</h4> </c:if></a>
-        </li>
-        <li><a href="home"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-        <li><a href="logout"> Logout</a></li>        
-      </ul>
-    </div>
-  </div>
-</div> --%>
 
 <%@include file="header.jsp"%>
 	<br/>
@@ -59,7 +31,7 @@
 <div class="tab-content">
     
     <div id="cat" class="tab-pane fade in active"><br><br>
-    	<form:form class="form-horizontal" id="login-form" action="saveCategory" >
+    	<form:form class="form-horizontal" id="login-form" action="${pageContext.request.contextPath}/admin/saveCategory" >
 			<div class="row">
 			<div class="form-group">
 				<label class="control-label col-sm-4" for="cid">Category ID:</label>		
@@ -78,7 +50,7 @@
 		</form:form>    		 
     </div>
     <div id="sup" class="tab-pane fade"><br><br>
-    	<form:form class="form-horizontal" id="login-form" method="post" action="saveSupplier" >
+    	<form:form class="form-horizontal" id="login-form" method="post" action="${pageContext.request.contextPath}/admin/saveSupplier" >
 			<div class="row">
 			<div class="form-group">
 				<label class="control-label col-sm-4" for="sid">Supplier ID:</label>		
@@ -97,7 +69,7 @@
 		</form:form>   
     </div> 
     <div id="prod" class="tab-pane fade"><br><br>
-		<form:form class="form-horizontal" method="post" action="saveProduct" enctype="multipart/form-data">
+		<form:form class="form-horizontal" method="post" action="${pageContext.request.contextPath}/admin/saveProduct" enctype="multipart/form-data">
 			<div class = "col-sm-10 col-sm-offset-2"><table>    
          	<tr>    
           		<td><b>Product Name</b></td><td><input type="text" name="prodname" class="form-control" value=""></td>  
@@ -144,7 +116,7 @@
 						
 	</div>
 </div>
-<div class="col-sm-4 col-sm-offset-5"><a href="view" class="button btn btn-login">View All</a></div>
+<div class="col-sm-4 col-sm-offset-5"><a href="${pageContext.request.contextPath}/admin/view" class="button btn btn-login">View All</a></div>
 </div>
 <br>
 	<%@include file="footer.jsp"%>

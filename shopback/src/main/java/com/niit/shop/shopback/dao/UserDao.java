@@ -7,4 +7,5 @@ import com.niit.shop.shopback.model.User;
 public interface UserDao {
 	void insertUser(User user);
 	List<User> userList();
+	User get(String userEmail);
 }

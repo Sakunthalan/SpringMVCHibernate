@@ -10,7 +10,7 @@
 <link rel="stylesheet"	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="./resources/admin.css">
+<link rel="stylesheet" href="../resources/admin.css">
 <title>Update Product</title>
 </head>
 <body>
@@ -20,19 +20,19 @@
 <div class="container">
 	 <br><br><br>
   <div class="col-md-8 col-md-offset-2">
-		<form:form class="form-horizontal" method="post" action="updateProduct?pid=${prod.pid}" enctype="multipart/form-data">
+		<form:form class="form-horizontal" method="post" action="${pageContext.request.contextPath}/admin/updateProduct?pid=${plist.pid}" enctype="multipart/form-data">
 			<div class = "col-sm-10 col-sm-offset-2"><table> 			  
          	<tr>    
-          		<td><b>Product Name</b></td><td><input type="text" name="prodname" class="form-control" value="${prod.pname}"></td>  
+          		<td><b>Product Name</b></td><td><input type="text" name="prodname" class="form-control" value="${plist.pname}"></td>  
         	</tr>    
          	<tr>    
-         		<td><b>Product Price</b></td><td><input type="text" name="prodprice" class="form-control" value="${prod.price}"></td>  
+         		<td><b>Product Price</b></td><td><input type="text" name="prodprice" class="form-control" value="${plist.price}"></td>  
          	</tr>   
          	<tr>    
-          		<td><b>Product Description</b></td><td><input type="text" name="proddesc" class="form-control" value="${prod.description}"></td>  
+          		<td><b>Product Description</b></td><td><input type="text" name="proddesc" class="form-control" value="${plist.description}"></td>  
          	</tr>   
             <tr>    
-         		<td><b>Product Stock</b></td><td><input type="text" name="prodstock" class="form-control" value="${prod.stock}"></td>  
+         		<td><b>Product Stock</b></td><td><input type="text" name="prodstock" class="form-control" value="${plist.stock}"></td>  
          	</tr>
          	
          	<tr>

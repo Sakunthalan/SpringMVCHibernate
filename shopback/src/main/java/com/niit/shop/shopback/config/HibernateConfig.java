@@ -14,13 +14,15 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.niit.shop.shopback.model.Cart;
 import com.niit.shop.shopback.model.Category;
+import com.niit.shop.shopback.model.Order;
 import com.niit.shop.shopback.model.Product;
 import com.niit.shop.shopback.model.Supplier;
 import com.niit.shop.shopback.model.User;
 
 @Configuration
-@ComponentScan({"com.niit.shop.shopback"})
+@ComponentScan({"com.niit.shop.shopback.*"})
 @EnableTransactionManagement
 public class HibernateConfig {
 	@Autowired
@@ -43,7 +45,7 @@ public class HibernateConfig {
     }
 	
 	@Autowired
-    @Bean
+    @Bean(name="sessionFactory")
     public SessionFactory sessionFactory(DataSource dataSource) {
         LocalSessionFactoryBuilder builder = new LocalSessionFactoryBuilder(dataSource);
         builder.addProperties(getHibernateProperties());
@@ -51,6 +53,8 @@ public class HibernateConfig {
         builder.addAnnotatedClass(User.class);
         builder.addAnnotatedClass(Category.class); 
         builder.addAnnotatedClass(Product.class);
+        builder.addAnnotatedClass(Cart.class);
+        builder.addAnnotatedClass(Order.class);
         return builder.buildSessionFactory();
     }
 	

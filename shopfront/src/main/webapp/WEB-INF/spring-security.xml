@@ -11,12 +11,11 @@
 	http://www.springframework.org/schema/security
 	http://www.springframework.org/schema/security/spring-security.xsd">
 	
-
 	<http auto-config="true">
 	
 		<intercept-url pattern="/resources/**" access="permitAll" />
 		<!-- <access-denied-handler error-page="/error" /> -->
-		<intercept-url pattern="/adminPage" access="hasAuthority('ROLE_ADMIN')" />
+		<intercept-url pattern="/admin/**" access="hasAuthority('ROLE_ADMIN')" />
 		<intercept-url pattern="/login" access="permitAll" />
 		
 		<form-login 
@@ -36,8 +35,8 @@
 		<authentication-provider>
 			<jdbc-user-service 
 				data-source-ref="dataSource"
-				users-by-username-query="select username,password, 'TRUE' as enable from usertable where username =?"
-				authorities-by-username-query="select username,role from usertable where username=?" />
+				users-by-username-query="select email,password, 'TRUE' as enable from usertable where email=?"
+				authorities-by-username-query="select email,role from usertable where email=?" />
 		</authentication-provider>
 	</authentication-manager>
 

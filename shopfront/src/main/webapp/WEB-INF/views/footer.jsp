@@ -17,13 +17,13 @@
     
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav navbar-left">
-        <li><a href="">Contact Us</a>
+        <li><a href=""><b>Contact Us</b></a>
         </li>
-        <li><a href="">About Us</a>
+        <li><a href=""><b>About Us</b></a>
         </li>
-        <li><a href="">Facebook</a>
+        <li><a href="" class="fa fa-facebook-square"><b> Facebook</b></a>
         </li>
-        <li><a href="">Twitter</a>
+        <li><a href="" class="fa fa-twitter-square"><b> Twitter</b></a>
         </li>
       </ul>
     </div>

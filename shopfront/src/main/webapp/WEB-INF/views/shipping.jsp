@@ -4,18 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Success</title>
+<title>Insert title here</title>
 </head>
 <body>
-<%@include file="header.jsp"%>
-	<br><br><br><br>
-<br>
-<h1>Success...!</h1>
 
-<p>
-<a href="adminPage" class="btn btn-default">Back</a>
-</p>
-<br>
-<%@include file="footer.jsp"  %>
 </body>
 </html>

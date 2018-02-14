@@ -2,13 +2,13 @@ package com.niit.shop.controller;
 
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,6 +24,7 @@ import com.niit.shop.shopback.model.Product;
 import com.niit.shop.shopback.model.Supplier;
 
 @Controller
+@RequestMapping("/admin")
 public class AdminController {
 
 	@Autowired
@@ -35,15 +36,19 @@ public class AdminController {
 	@Autowired
 	private ProductDao productdao;
 	
-	@RequestMapping(value = {"/adminPage"})
+	@RequestMapping(value = "/adminPage")
 	public ModelAndView adminPage()
 	{
-		List<Category> clist=categorydao.categoryList();  
-		List<Supplier> slist=supplierdao.supplierList();
 		ModelAndView mv = new ModelAndView("adminPage");
-		mv.addObject("slist",slist);			
-		mv.getModelMap().addAttribute("clist",clist);
         return mv; 
+	}
+	
+	@ModelAttribute
+	public void addAttributes(Model model)
+	{
+		model.addAttribute("plist", productdao.productList());
+		model.addAttribute("slist", supplierdao.supplierList());
+		model.addAttribute("clist",categorydao.categoryList());
 	}
 
 	@RequestMapping(value="/saveSupplier",method = RequestMethod.POST)
@@ -96,49 +101,30 @@ public class AdminController {
         return "redirect:adminPage"; 	
 	}
 		
-	@RequestMapping(value= {"/view"},method=RequestMethod.GET)
+	@RequestMapping(value= "/view")
 	public ModelAndView view()
 	{
-		List<Category> clist=categorydao.categoryList();  
-		List<Supplier> slist=supplierdao.supplierList();
-		List<Product> plist=productdao.productList();
 		ModelAndView mv = new ModelAndView("view");
-		mv.addObject("slist",slist);	
-		mv.addObject("plist",plist);
-		mv.getModelMap().addAttribute("clist",clist);
         return mv; 		
 	}
-	
-	@RequestMapping(value="/viewById")	
-    public ModelAndView viewCategoryById(@PathVariable String id){  
-		Category viewById=categorydao.get(id);  
-        return new ModelAndView("viewById","viewById",viewById);  
-    }
-	
-	@RequestMapping("/userDenied")
-	public ModelAndView userDenied() {
-		return new ModelAndView("userDenied");
-	}
-	
+				
 	@RequestMapping("/adminProductList")
 	public ModelAndView adminProductList()
 	{
 		ModelAndView mv = new ModelAndView("adminProductList");
-		List<Product> plist=productdao.productList();
-		mv.addObject("prodList",plist);
 		return mv;
 	}
 	
-	@RequestMapping(value = {"/updateProduct"})
+	@RequestMapping(value = "/updateProduct")
 	public ModelAndView updateProduct(@RequestParam("pid") int pid)
 	{
-		List<Category> clist=categorydao.categoryList();  
-		List<Supplier> slist=supplierdao.supplierList();
+		//List<Category> clist=categorydao.categoryList();  
+		//List<Supplier> slist=supplierdao.supplierList();
 		ModelAndView mv = new ModelAndView("updateProduct");
 		Product product = productdao.get(pid);
-		mv.addObject("prod",product);
-		mv.addObject("slist",slist);			
-		mv.getModelMap().addAttribute("clist",clist);
+		mv.addObject("plist",product);
+		//mv.addObject("slist",slist);			
+		//mv.getModelMap().addAttribute("clist",clist);
         return mv; 
 	}
 	
@@ -176,7 +162,7 @@ public class AdminController {
 	public String deleteProd(@PathVariable("pid") int pid)
 	{
 		productdao.deleteProduct(pid);
-		return "redirect:/adminProductList";
-	}
+		return "redirect:/admin/adminProductList";
+	}	
 
 }

@@ -30,6 +30,7 @@ public class SupplierImpl implements SupplierDao{
 
 		
 		@Override
+		@SuppressWarnings("unchecked")
 		public List<Supplier> supplierList() {
 			Session session = sessionFactory.openSession();
 			session.beginTransaction();

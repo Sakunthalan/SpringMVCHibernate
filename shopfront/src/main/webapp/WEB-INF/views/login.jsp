@@ -8,8 +8,16 @@
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="./resources/logincss.css">
 <title>Login</title>
+<style>
+body {
+    background-image:    url(./resources/back.jpg);
+    background-size:     cover;                      /* <------ */
+    background-repeat:   no-repeat;
+    background-position: center center;              /* optional, center the image */    
+}
+</style>
 </head>
-<body background="./resources/back.jpg">
+<body>
 
 <%@include file="header.jsp" %>
 

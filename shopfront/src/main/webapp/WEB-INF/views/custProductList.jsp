@@ -24,6 +24,7 @@
 		<table class="table table-striped" border="1">
 			<thead>
 				<tr>
+					<th>SNO</th>
 					<th>Product Id</th>
 					<th>Product Name</th>
 					<th>Product Description</th>
@@ -32,11 +33,14 @@
 					<th>Product Price</th>
 					<th>Product Stock</th>
 					<th>Product Image</th>
+					<th>Actions</th>
 				</tr>
 			</thead>
+			<%!int i=1; %>
 			<tbody>
 				<c:forEach var="prod" items="${prodList}">
 					<tr>
+						<td><%=i++ %></td>
 						<td>${prod.pid}</td>
 						<td>${prod.pname}</td>
 						<td>${prod.description}</td>
@@ -45,6 +49,7 @@
 						<td>${prod.price}</td>
 						<td>${prod.stock}</td>
 						<td><img src="./resources/${prod.imgName}" width="50" height="50" /></td>
+						<td><a href = "${pageContext.request.contextPath}/productDetails/${prod.pid}" class = "btn btn-info">Details</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>

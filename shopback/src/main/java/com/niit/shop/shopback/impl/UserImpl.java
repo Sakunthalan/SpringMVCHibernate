@@ -28,6 +28,7 @@ public class UserImpl implements UserDao {
 	}
 	
 	@Override
+	@SuppressWarnings("unchecked")
 	public List<User> userList() {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
@@ -35,6 +36,11 @@ public class UserImpl implements UserDao {
 		session.getTransaction().commit();
 		session.close();
 		return list;
+	}
+
+	@Override
+	public User get(String userEmail) {
+		return sessionFactory.getCurrentSession().get(User.class, userEmail);
 	}
 
 }

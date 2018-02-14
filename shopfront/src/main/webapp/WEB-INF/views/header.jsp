@@ -24,31 +24,37 @@
   	<span class="icon-bar"></span>
   	
   	</button>
- 	<a class="navbar-brand" href="home">Shoppify</a>
+ 	<a class="navbar-brand" href="#"><b>Shoppify</b></a>
   	</div>
     
     <div class="collapse navbar-collapse" id="bs-navbar-collapse">
     	 <ul class="nav navbar-nav navbar-left mr-auto">
-      		<li><a href="adminPage">Admin</a></li>
-     		<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Category<span class="caret"></span></a>
+      		<li><a href="${pageContext.request.contextPath}/admin/adminPage"><b>Admin</b></a></li>
+     		<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><b>Category</b><span class="caret"></span></a>
         		<ul class="dropdown-menu">
         		<c:forEach var="cat" items="${clist}">
-        		<li><a href="custProductList?categoryId=${cat.categoryId}">${cat.categoryName}</a></li>
+        		<%-- <li><a href="custProductList?categoryId=${cat.categoryId}">${cat.categoryName}</a></li> --%>
+        		<c:if test="${pageContext.request.userPrincipal.name == null}">
+		        	<li><a href="login">${cat.categoryName}</a></li>
+		        </c:if>
+		        <c:if test="${pageContext.request.userPrincipal.name != null}">
+		        	<li><a href="custProductList?categoryId=${cat.categoryId}">${cat.categoryName}</a></li>
+		        </c:if>
          		</c:forEach> 
         		</ul>
       		</li>
-      		<li><a href="adminProductList">Admin List</a></li>
+      		<li><a href="${pageContext.request.contextPath}/admin/adminProductList"><b>Admin List</b></a></li>
     	</ul> 
       <ul class="nav navbar-nav navbar-right mr-auto">
       	<c:if test="${pageContext.request.userPrincipal.name == null}">
-        	<li><a href="home"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-        	<li><a href="register">Register</a></li>
-        	<li><a href="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        	<li><a href="home"><span class="glyphicon glyphicon-home"></span><b> Home</b></a></li>
+        	<li><a href="register"><b>Register</b></a></li>
+        	<li><a href="login"><span class="glyphicon glyphicon-log-in"></span><b> Login</b></a></li>
         </c:if>
         <c:if test="${pageContext.request.userPrincipal.name != null}">
-      		<li> <a>Welcome : ${pageContext.request.userPrincipal.name} </a></li>
-        	<li><a href="home"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-        	<li><a href="<c:url value="/logout"/>">Logout</a></li>  
+      		<li> <a><b>Welcome : ${pageContext.request.userPrincipal.name} </b></a></li>
+<!--         	<li><a href="home"><span class="glyphicon glyphicon-home"></span><b> Home</b></a></li>
+ -->        	<li><a href="<c:url value="/logout"/>"><b>Logout</b></a></li>  
         </c:if>  
         
       </ul>

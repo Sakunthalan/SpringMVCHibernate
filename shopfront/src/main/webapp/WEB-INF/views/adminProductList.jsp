@@ -54,7 +54,7 @@
 			</thead>
 			<%! int i = 1; %>
 			<tbody>
-				<c:forEach var="prod" items="${prodList}">
+				<c:forEach var="prod" items="${plist}">
 					<tr>
 						<td><%=i++ %></td>
 						<td>${prod.pid}</td>
@@ -64,9 +64,9 @@
 						<td>${prod.supplier.supplierName}</td>
 						<td>${prod.price}</td>
 						<td>${prod.stock}</td>
-						<td><img src="./resources/${prod.imgName}" width="50" height="50" /></td>
-						<td><div class="row"><div class="col-sm-5"><a href="updateProduct?pid=${prod.pid}" class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span> </a></div>
-							<div class="col-sm-5"><a href="deleteProduct/${prod.pid}" class="btn btn-info"><span class="glyphicon glyphicon-trash"></span> </a></div></div></td>
+						<td><img src="../resources/${prod.imgName}" width="50" height="50" /></td>
+						<td><div class="row"><div class="col-sm-5"><a href="${pageContext.request.contextPath}/admin/updateProduct?pid=${prod.pid}" class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span> </a></div>
+							<div class="col-sm-5"><a href="${pageContext.request.contextPath}/admin/deleteProduct/${prod.pid}" class="btn btn-info"><span class="glyphicon glyphicon-trash"></span> </a></div></div></td>
 					</tr>
 				</c:forEach>
 			</tbody>
