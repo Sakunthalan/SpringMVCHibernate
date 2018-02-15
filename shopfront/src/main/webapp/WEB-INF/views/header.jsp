@@ -53,6 +53,7 @@
         </c:if>
         <c:if test="${pageContext.request.userPrincipal.name != null}">
       		<li> <a><b>Welcome : ${pageContext.request.userPrincipal.name} </b></a></li>
+      		<li><a href="${pageContext.request.contextPath}/cart"><span class="glyphicon glyphicon-shopping-cart"></span> <b>My Cart</b></a></li>
 <!--         	<li><a href="home"><span class="glyphicon glyphicon-home"></span><b> Home</b></a></li>
  -->        	<li><a href="<c:url value="/logout"/>"><b>Logout</b></a></li>  
         </c:if>  

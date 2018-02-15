@@ -40,7 +40,13 @@ public class UserImpl implements UserDao {
 
 	@Override
 	public User get(String userEmail) {
-		return sessionFactory.getCurrentSession().get(User.class, userEmail);
+		//return sessionFactory.getCurrentSession().get(User.class, userEmail);
+		Session session=sessionFactory.openSession();
+		session.beginTransaction();
+		User user=(User) session.createQuery("FROM UserTable WHERE email = :email").setParameter("email", userEmail).getSingleResult();
+	//	User user=session.get(User.class, email);
+		session.getTransaction().commit();
+		return user;
 	}
 
 }

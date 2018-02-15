@@ -16,7 +16,7 @@ public class Order {
 	private Double total;
 	
 	@ManyToOne
-	@JoinColumn(name="email")
+	@JoinColumn(name="userId")
 	private User user;
 
 	public int getOrderId() {

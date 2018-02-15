@@ -1,21 +1,28 @@
 package com.niit.shop.shopback.model;
 
 
+import java.io.Serializable;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 @Entity(name="UserTable")
-public class User {
+public class User{
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	//@OneToMany
 	private int id;
 	
 	private String userName;
+	
+//	@OneToMany
+//	@JoinColumn(name="email")
+	@Column(name="email",unique=true)
 	private String email;
 	private String mobile;
 	private String address;

@@ -21,7 +21,8 @@ public class Cart {
 	private String cartImage;
 	
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "email")
+	//@JoinColumn(name = "email")
+	@JoinColumn(name = "userId")
 	private User userCartDetails;
 
 	public int getCartId() {
