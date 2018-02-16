@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -35,20 +36,21 @@
 				<div class="panel panel-default">
 					<div class="panel-heading"><h4>Enter Card Details</h4></div>
 					<div class="panel-body">
-						<div class="col-sm-9 col-sm-offset-1"><form method="post" action="${pageContext.request.contextPath}/invoice">
+						<div class="col-sm-9 col-sm-offset-1"><form:form method="post" action="${pageContext.request.contextPath}/invoice">
 						Payment
 						<select class="form-control" name="payment" required>
 						<option value="">--Select Payment--</option>
-         				<option value="">Cash on Delivery</option>
-         		        <option value="">Net Banking</option></select>
-         		        <input type="hidden" name="total" class="form-control" value="${cart.stream().map(cart -> cart.cartPrice * cart.quantity).sum()}">
+         				<option value="Cash on Delivery">Cash on Delivery</option>
+         		        <option value="Net Banking">Net Banking</option></select>
+         		        <%-- <c:set var="total" value="${cart.stream().map(cart -> cart.cartPrice * cart.quantity).sum()}"> --%>
+         		        <input type="hidden" name="total" class="form-control" value="${cart.stream().map(cart -> cart.cartPrice * cart.quantity).sum()}"><%-- </c:set> --%>
          		        <input type="text" name="cardnumber" class="form-control" value="" placeholder="Enter your card number">
          		        <input type="text" name="cardname" class="form-control" value="" placeholder="Name on card">
          		        <input type="text" name="cvv" class="form-control" value="" placeholder="CVV">
          		        Expiry
-         		        <div class="row"><div class="col-sm-6"><input type="text" name="month" class="form-control" value="" placeholder="mm"></div>
-         		        <div class="col-sm-6"><input type="text" name="year" class="form-control" value="" placeholder="yy"></div></div><br>
-         		        <button type="submit" class="btn btn-success"> Place Order</button></form>
+         		        <div class="row"><div class="col-sm-6"><input type="number" name="month" class="form-control" value="" placeholder="mm" maxlength="2"></div>
+         		        <div class="col-sm-6"><input type="number" name="year" class="form-control" value="" placeholder="yy" maxlength="4"></div></div><br>
+         		        <button type="submit" class="btn btn-success"> Place Order</button></form:form>
          		        </div>         		        
 					</div>
 				</div>

@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -150,6 +149,14 @@ public class CartController {
 		order.setTotal(total);
 		order.setUser(user);
 		orderdao.insert(order);
+		mv.addObject("user",user);
+		mv.addObject("payment",payment);
+		mv.addObject("total", total);
 		return mv;
+	}
+
+	@RequestMapping(value="/thanks")
+	public String thanks() {
+		return "thanks";
 	}
 }
