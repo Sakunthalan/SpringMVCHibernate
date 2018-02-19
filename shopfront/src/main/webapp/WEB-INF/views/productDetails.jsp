@@ -27,7 +27,7 @@
 			<form:form class="form-horizontal" method="post" action="${pageContext.request.contextPath}/addCart">
 				<input type="hidden" name="pid" class="form-control" value="${prod.pid}">
 				<%-- <input type="hidden" name="prodname" class="form-control" value="${prod.pid}">--%>
-				<input type="text" name="quantity" class="form-control" value=""><br>
+				<input type="text" name="quantity" class="form-control" value="" required><br>
 				 <button type="submit" class="btn btn-login">Add To Cart</button>
 			
 			</form:form>

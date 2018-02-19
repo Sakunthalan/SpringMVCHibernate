@@ -5,6 +5,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity(name="UserTable")
 public class User{
@@ -13,16 +18,29 @@ public class User{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	
+	@NotNull(message = "Name can't be empty")
 	private String userName;
 	
 //	@OneToMany
 //	@JoinColumn(name="email")
 	@Column(name="email",unique=true)
+	@NotEmpty
+	@Pattern(regexp=".+@.+\\.[a-z]+", message="Give valid mail e.g.{name@abc.com}")
 	private String email;
+	
+	@Size(min = 10, max = 10, message="Give valid number")
 	private String mobile;
+	
+	@NotNull(message="Enter valid address")
 	private String address;
+	
+	@NotNull(message="Enter your country")
 	private String country;
+	
+	@NotEmpty(message = "Please enter your password")
+    @Size(min = 6, max = 10, message = "Your password must between 6 and 10 characters")
 	private String password;
+	
 	private String role;
 	private boolean enabled;
 	

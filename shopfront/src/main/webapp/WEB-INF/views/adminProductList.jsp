@@ -32,8 +32,8 @@
 		<div class ="row"><div class="col-sm-6">		
 		<h3><b>Product List</b></h3></div>
 		<div class="col-sm-6"><div class="search-container">
-			<form>
-      		<input type="text" placeholder="Search.." name="search">
+			<form action="${pageContext.request.contextPath}/admin/search">
+      		<input type="text" placeholder="Search by Category.." name="cname">
       		<button type="submit"><i class="fa fa-search"></i></button>
     		</form>
   		</div></div></div><br>

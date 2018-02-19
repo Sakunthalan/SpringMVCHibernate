@@ -35,12 +35,12 @@
 			<div class="row">
 			<div class="form-group">
 				<label class="control-label col-sm-4" for="cid">Category ID:</label>		
-    			<div class="col-sm-6"><input type="text" name="cid" class="form-control" value=""></div>
+    			<div class="col-sm-6"><input type="text" name="cid" class="form-control" value="" required></div>
     		</div></div><br>
     		<div class="row">
 			<div class="form-group">
 				<label class="control-label col-sm-4" for="cname">Category Name: </label>
-				<div class="col-sm-6"><input type="text" name="cname" class="form-control" value=""></div>
+				<div class="col-sm-6"><input type="text" name="cname" class="form-control" value="" required></div>
 			</div></div><br>
 			<div class="row">
 			<div class="form-group">
@@ -54,12 +54,12 @@
 			<div class="row">
 			<div class="form-group">
 				<label class="control-label col-sm-4" for="sid">Supplier ID:</label>		
-    			<div class="col-sm-6"><input type="text" name="sid" class="form-control" value=""></div>
+    			<div class="col-sm-6"><input type="text" name="sid" class="form-control" value="" required></div>
     		</div></div><br>
     		<div class="row">
 			<div class="form-group">
 				<label class="control-label col-sm-4" for="sname">Supplier Name: </label>
-				<div class="col-sm-6"><input type="text" name="sname" class="form-control" value=""></div>
+				<div class="col-sm-6"><input type="text" name="sname" class="form-control" value="" required></div>
 			</div></div><br>
 			<div class="row">
 			<div class="form-group">
@@ -72,16 +72,16 @@
 		<form:form class="form-horizontal" method="post" action="${pageContext.request.contextPath}/admin/saveProduct" enctype="multipart/form-data">
 			<div class = "col-sm-10 col-sm-offset-2"><table>    
          	<tr>    
-          		<td><b>Product Name</b></td><td><input type="text" name="prodname" class="form-control" value=""></td>  
+          		<td><b>Product Name</b></td><td><input type="text" name="prodname" class="form-control" value="" required></td>  
         	</tr>    
          	<tr>    
-         		<td><b>Product Price</b></td><td><input type="text" name="prodprice" class="form-control" value=""></td>  
+         		<td><b>Product Price</b></td><td><input type="text" name="prodprice" class="form-control" value="" required></td>  
          	</tr>   
          	<tr>    
-          		<td><b>Product Description</b></td><td><input type="text" name="proddesc" class="form-control" value=""></td>  
+          		<td><b>Product Description</b></td><td><input type="text" name="proddesc" class="form-control" value="" required></td>  
          	</tr>   
             <tr>    
-         		<td><b>Product Stock</b></td><td><input type="text" name="prodstock" class="form-control" value=""></td>  
+         		<td><b>Product Stock</b></td><td><input type="text" name="prodstock" class="form-control" value="" required></td>  
          	</tr>
          	
          	<tr>
@@ -103,7 +103,7 @@
          		</select></td>
          	</tr>  
          	<tr>
-         		<td><b>Choose Image</b></td><td><input type="file" value="Browse" name="file"></td>
+         		<td><b>Choose Image</b></td><td><input type="file" value="Browse" name="file" required></td>
          	</tr>
         </table><br>
         <div class="form-group">

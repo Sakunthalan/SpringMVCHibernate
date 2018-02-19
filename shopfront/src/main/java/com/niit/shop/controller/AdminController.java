@@ -2,6 +2,9 @@ package com.niit.shop.controller;
 
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -100,7 +103,7 @@ public class AdminController {
 			
         return "redirect:adminPage"; 	
 	}
-		
+	
 	@RequestMapping(value= "/view")
 	public ModelAndView view()
 	{
@@ -112,6 +115,22 @@ public class AdminController {
 	public ModelAndView adminProductList()
 	{
 		ModelAndView mv = new ModelAndView("adminProductList");
+		return mv;
+	}
+	
+	@RequestMapping("/search")
+	public ModelAndView adminSearch(@RequestParam("cname") String cname)
+	{
+		List<Product> plist = new ArrayList<Product>();
+		List<Product> list = productdao.productList();
+		for(Product p : list)
+		{
+			if(p.getCategory().getCategoryName().equalsIgnoreCase(cname))
+			{
+				plist.add(p);
+			}
+		}
+		ModelAndView mv = new ModelAndView("adminProductList","plist",plist);
 		return mv;
 	}
 	

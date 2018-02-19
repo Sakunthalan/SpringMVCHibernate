@@ -42,7 +42,7 @@
 						<td>${cart.cartProductName}</td>
 						<td>${cart.cartPrice}</td>
 						<td>${cart.quantity}</td>
-						<td><img src="../resources/${cart.cartImage}" width="50" height="50" /></td>
+						<td><img src="./resources/${cart.cartImage}" width="50" height="50" /></td>
 						<td>${cart.cartPrice * cart.quantity}</td>
 						<td><a href="${pageContext.request.contextPath}/deleteCart/${cart.cartId}" class="btn btn-info"><span class="glyphicon glyphicon-trash"></span></a></td>
 					</tr>

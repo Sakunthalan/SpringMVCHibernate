@@ -20,9 +20,38 @@
 <%@include file="header.jsp" %>
 <br><br>
 
-	<form:form class="form-horizontal" method="post" action="register" style="border:1px solid #ccc" >
+	<form:form class="form-horizontal" method="post" action="register" commandName="user" modelAttribute="user" style="border:1px solid #ccc" >
 		<div class="container"><br><br>
+			<label class="control-label col-sm-5"><b>UserName:</b></label>		
+    		<div class="col-sm-4"><form:input path = "userName" />
+    		<form:errors path="userName" cssStyle="color: #ff0000"/></div>
+    		    		
+			<label class="control-label col-sm-5"><b>Email:</b></label>		
+    		<div class="col-sm-4"><form:input path="email" type="text" />
+    		<form:errors path="email" cssStyle="color: #ff0000"/></div>
+    		
+			<label class="control-label col-sm-5"><b>Password:</b></label>		
+    		<div class="col-sm-4"><form:input path="password" type="password" />
+    		<form:errors path="password" cssStyle="color: #ff0000"/></div>
+    		
+			<label class="control-label col-sm-5"><b>Mobile:</b></label>		
+    		<div class="col-sm-4"><form:input path="mobile" type="text" />
+    		<form:errors path="mobile" cssStyle="color: #ff0000"/></div>
+    		
+			<label class="control-label col-sm-5"><b>Address:</b></label>		
+    		<div class="col-sm-4"><form:input path="address" type="text" />
+    		<form:errors path="address" cssStyle="color: #ff0000"/></div>
+    		
+			<label class="control-label col-sm-5"><b>Country:</b></label>		
+    		<div class="col-sm-4"><form:input path="country" type="text" />
+    		<form:errors path="country" cssStyle="color: #ff0000"/></div>
+    		
     		<div class="form-group">
+    		<div class="col-sm-3"></div>
+			<div class="col-sm-4 col-sm-offset-2"><button type="submit" class="btn">Register</button></div>
+    		<div class="col-sm-4"><button type="submit" class="btn">Cancel</button></div><br>
+    		</div>
+    		<!-- <div class="form-group">
 			<label class="control-label col-sm-5"><b>UserName:</b></label>		
     		<div class="col-sm-4"><input type="text" name="userName" class="form-control" value=""></div>
     		<div class="col-sm-3"></div></div>
@@ -56,7 +85,7 @@
     		<div class="col-sm-2"></div>
 			<div class="col-sm-5"><button type="submit" class="signupbtn">Register</button></div>
     		<div class="col-sm-5"><button type="submit" class="signupbtn">Cancel</button></div>
-    		</div>
+    		</div> -->
     		<br>
 		</div>
 	</form:form>

@@ -1,11 +1,12 @@
 package com.niit.shop.controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+//import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,6 +33,8 @@ public class HomeController {
 	
 	@Autowired
 	private SupplierDao supplierdao;
+	
+	//private Validator validator;
 	
 	@RequestMapping(value= {"/","home"},method=RequestMethod.GET)
 	public ModelAndView index()
@@ -62,11 +65,18 @@ public class HomeController {
 		return new ModelAndView("userDenied");
 	}
 			
-	@RequestMapping(value="/register")
+	/*@RequestMapping(value="/register")
 	public ModelAndView register()
 	{
 		ModelAndView mv = new ModelAndView("register");
 		return mv;
+	}*/
+	
+	@RequestMapping(value="/register")
+	public String register(Model model)
+	{
+		model.addAttribute("user", new User());
+		return "register";
 	}
 	
 	@ModelAttribute
@@ -78,19 +88,26 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="/register",method = RequestMethod.POST)
-	public ModelAndView addUser(HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView addUser(@Valid @ModelAttribute("user") User user /*HttpServletRequest request*/, BindingResult result)
 	{
-		ModelAndView mv = new ModelAndView("home");
-		User user = new User();
-		user.setRole("ROLE_USER");
-		user.setEnabled(false);
-		user.setAddress(request.getParameter("address"));
-		user.setCountry(request.getParameter("country"));
-		user.setEmail(request.getParameter("email"));
-		user.setMobile(request.getParameter("mobile"));
-		user.setPassword(request.getParameter("password"));
-		user.setUserName(request.getParameter("userName"));
+		ModelAndView mv = new ModelAndView();
+//		User user = new User();
+//		user.setRole("ROLE_USER");
+//		user.setEnabled(false);
+//		user.setAddress(request.getParameter("address"));
+//		user.setCountry(request.getParameter("country"));
+//		user.setEmail(request.getParameter("email"));
+//		user.setMobile(request.getParameter("mobile"));
+//		user.setPassword(request.getParameter("password"));
+//		user.setUserName(request.getParameter("userName"));
+		if(result.hasErrors())
+		{
+			System.out.println("result have errors");
+			return new ModelAndView("/register");
+		}
+		System.out.println("all are entered");
 		userdao.insertUser(user);
+		mv.addObject("/home");
 		return mv;		
 	}
 	

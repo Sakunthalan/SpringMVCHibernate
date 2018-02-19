@@ -29,9 +29,9 @@ body {
         <div class="col-md-4">
             <div class="form-login">
             <h4>Login</h4><form method="post" action="<c:url value='/j_spring_security_check'/>">
-            <input type="text" name="username" class="form-control input-sm chat-input" placeholder="username" />
+            <input type="text" name="username" class="form-control input-sm chat-input" placeholder="username" required/>
             <br>
-            <input type="password" name="password" class="form-control input-sm chat-input" placeholder="password" />
+            <input type="password" name="password" class="form-control input-sm chat-input" placeholder="password" required/>
             <br>
             <div class="wrapper">
             <span class="group-btn">  

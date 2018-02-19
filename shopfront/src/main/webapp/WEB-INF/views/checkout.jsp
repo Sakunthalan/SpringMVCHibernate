@@ -42,14 +42,13 @@
 						<option value="">--Select Payment--</option>
          				<option value="Cash on Delivery">Cash on Delivery</option>
          		        <option value="Net Banking">Net Banking</option></select>
-         		        <%-- <c:set var="total" value="${cart.stream().map(cart -> cart.cartPrice * cart.quantity).sum()}"> --%>
-         		        <input type="hidden" name="total" class="form-control" value="${cart.stream().map(cart -> cart.cartPrice * cart.quantity).sum()}"><%-- </c:set> --%>
-         		        <input type="text" name="cardnumber" class="form-control" value="" placeholder="Enter your card number">
-         		        <input type="text" name="cardname" class="form-control" value="" placeholder="Name on card">
-         		        <input type="text" name="cvv" class="form-control" value="" placeholder="CVV">
+         		        <input required type="hidden" name="total" class="form-control" value="${cart.stream().map(cart -> cart.cartPrice * cart.quantity).sum()}">
+         		        <input required type="text" name="cardnumber" class="form-control" value="" placeholder="Enter your card number">
+         		        <input required type="text" name="cardname" class="form-control" value="" placeholder="Name on card">
+         		        <input required type="text" name="cvv" class="form-control" value="" placeholder="CVV">
          		        Expiry
-         		        <div class="row"><div class="col-sm-6"><input type="number" name="month" class="form-control" value="" placeholder="mm" maxlength="2"></div>
-         		        <div class="col-sm-6"><input type="number" name="year" class="form-control" value="" placeholder="yy" maxlength="4"></div></div><br>
+         		        <div class="row"><div class="col-sm-6"><input required type="number" name="month" class="form-control" value="" placeholder="mm" maxlength="2"></div>
+         		        <div class="col-sm-6"><input required type="number" name="year" class="form-control" value="" placeholder="yy" maxlength="4"></div></div><br>
          		        <button type="submit" class="btn btn-success"> Place Order</button></form:form>
          		        </div>         		        
 					</div>

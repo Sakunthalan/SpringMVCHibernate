@@ -23,16 +23,16 @@
 		<form:form class="form-horizontal" method="post" action="${pageContext.request.contextPath}/admin/updateProduct?pid=${plist.pid}" enctype="multipart/form-data">
 			<div class = "col-sm-10 col-sm-offset-2"><table> 			  
          	<tr>    
-          		<td><b>Product Name</b></td><td><input type="text" name="prodname" class="form-control" value="${plist.pname}"></td>  
+          		<td><b>Product Name</b></td><td><input type="text" name="prodname" class="form-control" value="${plist.pname}" required></td>  
         	</tr>    
          	<tr>    
-         		<td><b>Product Price</b></td><td><input type="text" name="prodprice" class="form-control" value="${plist.price}"></td>  
+         		<td><b>Product Price</b></td><td><input type="text" name="prodprice" class="form-control" value="${plist.price}" required></td>  
          	</tr>   
          	<tr>    
-          		<td><b>Product Description</b></td><td><input type="text" name="proddesc" class="form-control" value="${plist.description}"></td>  
+          		<td><b>Product Description</b></td><td><input type="text" name="proddesc" class="form-control" value="${plist.description}" required></td>  
          	</tr>   
             <tr>    
-         		<td><b>Product Stock</b></td><td><input type="text" name="prodstock" class="form-control" value="${plist.stock}"></td>  
+         		<td><b>Product Stock</b></td><td><input type="text" name="prodstock" class="form-control" value="${plist.stock}" required></td>  
          	</tr>
          	
          	<tr>
@@ -54,7 +54,7 @@
          		</select></td>
          	</tr>  
          	<tr>
-         		<td><b>Choose Image</b></td><td><input type="file" value="Browse" name="file"></td>
+         		<td><b>Choose Image</b></td><td><input type="file" value="Browse" name="file" required></td>
          	</tr>
         </table><br>
         <div class="form-group">
