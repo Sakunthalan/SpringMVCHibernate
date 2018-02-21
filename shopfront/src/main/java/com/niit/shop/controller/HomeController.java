@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-//import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -33,8 +32,6 @@ public class HomeController {
 	
 	@Autowired
 	private SupplierDao supplierdao;
-	
-	//private Validator validator;
 	
 	@RequestMapping(value= {"/","home"},method=RequestMethod.GET)
 	public ModelAndView index()
@@ -90,7 +87,7 @@ public class HomeController {
 	@RequestMapping(value="/register",method = RequestMethod.POST)
 	public ModelAndView addUser(@Valid @ModelAttribute("user") User user /*HttpServletRequest request*/, BindingResult result)
 	{
-		ModelAndView mv = new ModelAndView();
+		//ModelAndView mv = new ModelAndView();
 //		User user = new User();
 //		user.setRole("ROLE_USER");
 //		user.setEnabled(false);
@@ -106,9 +103,11 @@ public class HomeController {
 			return new ModelAndView("/register");
 		}
 		System.out.println("all are entered");
+		user.setRole("ROLE_USER");
+		user.setEnabled(false);
 		userdao.insertUser(user);
-		mv.addObject("/home");
-		return mv;		
+		//mv.addObject("/home");
+		return new ModelAndView("/home");		
 	}
 	
 	@RequestMapping(value="/custProductList")

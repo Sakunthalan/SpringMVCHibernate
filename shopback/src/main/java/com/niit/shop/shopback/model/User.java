@@ -31,10 +31,10 @@ public class User{
 	@Size(min = 10, max = 10, message="Give valid number")
 	private String mobile;
 	
-	@NotNull(message="Enter valid address")
+	@NotEmpty(message="Enter valid address")
 	private String address;
 	
-	@NotNull(message="Enter your country")
+	@NotEmpty(message="Enter your country")
 	private String country;
 	
 	@NotEmpty(message = "Please enter your password")

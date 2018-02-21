@@ -54,7 +54,7 @@
 		<div class="row">
 		<div class="form-group">
 				<div class="col-sm-4"><a href="${pageContext.request.contextPath}/" class="btn btn-primary">Continue Shopping</a></div>
-				<div class="col-sm-4"><a href="${pageContext.request.contextPath}/checkout" class="btn btn-success">Checkout</a></div>
+				<div class="col-sm-4"><a href="${pageContext.request.contextPath}/checkout" class="btn btn-success">Buy Now</a></div>
 			</div>
 		</div>
 	</div>
